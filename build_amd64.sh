@@ -5,5 +5,5 @@ cd DlightWrt_amd64
 ./scripts/feeds install -a
 cp x86.config .config
 make menuconfig
-make -j8 download v=s
-make -j1  v=s
+make -j8 download V=s
+make -j1  V=s
