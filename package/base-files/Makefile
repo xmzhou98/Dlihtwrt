@@ -52,6 +52,7 @@ define Package/base-files/conffiles
 /etc/dropbear/
 /etc/ethers
 /etc/group
+/etc/timezone
 /etc/hosts
 /etc/inittab
 /etc/iproute2/rt_protos

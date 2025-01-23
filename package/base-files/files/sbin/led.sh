@@ -1,5 +1,4 @@
 #!/bin/sh
-# (C) 2008 openwrt.org
 
 . /lib/functions.sh
 ACTION=$1
