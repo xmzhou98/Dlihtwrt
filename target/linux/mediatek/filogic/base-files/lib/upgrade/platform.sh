@@ -40,13 +40,15 @@ xiaomi_initial_setup()
 		return 0
 	fi
 
-	fw_setenv boot_wait on
-	fw_setenv uart_en 1
-	fw_setenv flag_boot_rootfs 0
-	fw_setenv flag_last_success 1
-	fw_setenv flag_boot_success 1
-	fw_setenv flag_try_sys1_failed 8
-	fw_setenv flag_try_sys2_failed 8
+	fw_setenv -s - <<-EOF
+		boot_wait on
+		uart_en 1
+		flag_boot_rootfs 0
+		flag_last_success 1
+		flag_boot_success 1
+		flag_try_sys1_failed 8
+		flag_try_sys2_failed 8
+	EOF
 
 	local board=$(board_name)
 	case "$board" in
@@ -122,6 +124,11 @@ platform_do_upgrade() {
 	cudy,wr3000-v1|\
 	yuncore,ax835)
 		default_do_upgrade "$1"
+		;;
+	dlink,aquila-pro-ai-m30-a1|\
+	dlink,aquila-pro-ai-m60-a1)
+		fw_setenv sw_tryactive 0
+		nand_do_upgrade "$1"
 		;;
 	mercusys,mr90x-v1|\
 	tplink,re6000xd)
